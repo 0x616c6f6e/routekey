@@ -36,9 +36,9 @@ export function Options() {
     <div className="options-shell">
       <aside className="sidebar">
         <div className="sidebar-brand">
-          <div className="brand-mark">M</div>
+          <div className="brand-mark">R</div>
           <div>
-            <strong>MyProxy</strong>
+            <strong>routekey</strong>
             <span>本地代理控制台</span>
           </div>
         </div>

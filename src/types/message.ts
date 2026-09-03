@@ -27,7 +27,7 @@ export interface MessageResponse<T = unknown> {
 }
 
 export interface ExportConfig {
-  format: 'myproxy';
+  format: 'routekey';
   version: 1;
   nodes: ProxyNode[];
   settings: AppSettings;

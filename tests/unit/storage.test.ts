@@ -19,7 +19,7 @@ class MemoryStorage implements StorageArea {
 
 describe('storage', () => {
   it('migrates missing or invalid data to safe defaults', () => {
-    expect(migrateStorage({ 'myproxy.nodes': 'invalid' })).toEqual({
+    expect(migrateStorage({ 'routekey.nodes': 'invalid' })).toEqual({
       version: 1,
       nodes: [],
       settings: defaultSettings,
@@ -41,7 +41,7 @@ describe('storage', () => {
     const storage = new AppStorage(area);
     await storage.initialize();
     await storage.saveNodes([node]);
-    await expect(storage.importConfig({ format: 'myproxy', version: 99 })).rejects.toThrow();
+    await expect(storage.importConfig({ format: 'routekey', version: 99 })).rejects.toThrow();
     expect(await storage.getNodes()).toEqual([node]);
   });
 
@@ -64,5 +64,26 @@ describe('storage', () => {
     expect(exported.nodes[0]?.username).toBeUndefined();
     expect(exported.nodes[0]?.password).toBeUndefined();
     expect(exported.settings.backend.secret).toBeUndefined();
+  });
+
+  it('migrates legacy storage and import formats', async () => {
+    const area = new MemoryStorage();
+    area.data = {
+      'myproxy.nodes': [node],
+      'myproxy.settings': settings,
+    };
+    const storage = new AppStorage(area);
+
+    await storage.initialize();
+    expect(area.data['routekey.nodes']).toEqual([node]);
+    expect(area.data['routekey.settings']).toEqual(settings);
+
+    const imported = await storage.importConfig({
+      format: 'myproxy',
+      version: 1,
+      nodes: [node],
+      settings,
+    });
+    expect(imported.format).toBe('routekey');
   });
 });

@@ -63,9 +63,9 @@ export function Popup() {
     <div className="popup-shell">
       <header className="popup-header">
         <div className="popup-brand">
-          <div className="brand-mark">M</div>
+          <div className="brand-mark">R</div>
           <div>
-            <strong>MyProxy</strong>
+            <strong>routekey</strong>
             <span>{settings.proxyEnabled ? '代理已启用' : '代理已关闭'}</span>
           </div>
         </div>
@@ -84,7 +84,7 @@ export function Popup() {
               <Wifi size={30} />
             </div>
             <h1>添加第一个代理节点</h1>
-            <p>MyProxy 不提供公共节点。配置你自己的 HTTP 或 SOCKS 代理即可开始。</p>
+            <p>routekey 不提供公共节点。配置你自己的 HTTP 或 SOCKS 代理即可开始。</p>
             <Button onClick={() => openOptions('nodes')}>
               <Plus size={17} /> 打开节点设置
             </Button>

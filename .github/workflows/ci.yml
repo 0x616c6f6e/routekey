@@ -54,7 +54,7 @@ jobs:
 
       - name: Package extension
         env:
-          ARCHIVE_NAME: myproxy-extension-${{ github.sha }}.zip
+          ARCHIVE_NAME: routekey-extension-${{ github.sha }}.zip
         run: |
           cd dist
           zip -q -r -9 "../${ARCHIVE_NAME}" .
@@ -62,8 +62,8 @@ jobs:
       - name: Upload extension artifact
         uses: actions/upload-artifact@v7
         with:
-          name: myproxy-extension-${{ github.sha }}
-          path: myproxy-extension-${{ github.sha }}.zip
+          name: routekey-extension-${{ github.sha }}
+          path: routekey-extension-${{ github.sha }}.zip
           if-no-files-found: error
           retention-days: 14
           compression-level: 0

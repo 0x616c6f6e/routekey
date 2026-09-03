@@ -1,4 +1,4 @@
-# MyProxy Browser Extension 项目实现文档
+# routekey Browser Extension 项目实现文档
 
 ## 1. 项目目标
 
@@ -202,7 +202,7 @@ Extension
 ## 6. 项目目录结构
 
 ```text
-myproxy-extension/
+routekey-extension/
 │
 ├── public/
 │   ├── icons/
@@ -399,18 +399,18 @@ chrome.storage.local
 建议 key：
 
 ```text
-myproxy.nodes
-myproxy.settings
-myproxy.version
-myproxy.runtime
+routekey.nodes
+routekey.settings
+routekey.version
+routekey.runtime
 ```
 
 示例：
 
 ```json
 {
-  "myproxy.nodes": [],
-  "myproxy.settings": {
+  "routekey.nodes": [],
+  "routekey.settings": {
     "proxyEnabled": false,
     "mode": "direct",
     "bypassList": [
@@ -419,7 +419,7 @@ myproxy.runtime
       "*.local"
     ]
   },
-  "myproxy.version": 1
+  "routekey.version": 1
 }
 ```
 
@@ -434,7 +434,7 @@ manifest.json 基础结构：
 ```json
 {
   "manifest_version": 3,
-  "name": "MyProxy",
+  "name": "routekey",
   "version": "0.1.0",
   "description": "User-managed browser proxy extension",
 
@@ -504,7 +504,7 @@ Popup 大小建议：
 
 ```text
 ┌────────────────────────────┐
-│ MyProxy                ⚙   │
+│ routekey                ⚙   │
 ├────────────────────────────┤
 │                            │
 │ Proxy        [ ON / OFF ]  │
@@ -1031,7 +1031,7 @@ Installed：
 
 ```json
 {
-  "format": "myproxy",
+  "format": "routekey",
   "version": 1,
   "nodes": [],
   "settings": {},
@@ -1201,7 +1201,7 @@ Badge：
 首次打开：
 
 ```text
-Welcome to MyProxy
+Welcome to routekey
 
 [ Add Proxy Node ]
 
@@ -1427,7 +1427,7 @@ localhost -> DIRECT
 
 另一个扩展控制代理。
 
-确认 MyProxy 提示冲突。
+确认 routekey 提示冲突。
 
 ### Test 7
 
@@ -1467,7 +1467,7 @@ Codex 必须遵守：
 ```text
 你是一名高级 Chrome Extension / TypeScript 工程师。
 
-请根据仓库中的 myproxy_project_plan.md，从零实现 MyProxy 浏览器插件。
+请根据仓库中的 routekey_project_plan.md，从零实现 routekey 浏览器插件。
 
 项目目标：
 实现一个 Manifest V3 Chrome / Edge 浏览器代理扩展，类似 GHelper，但代理节点完全由用户自行配置。
@@ -1644,7 +1644,7 @@ STEP 16
 MVP 稳定后，再让 Codex 执行：
 
 ```text
-基于现有 MyProxy 项目增加 Mihomo Backend。
+基于现有 routekey 项目增加 Mihomo Backend。
 
 要求：
 
@@ -1691,7 +1691,7 @@ MVP 稳定后，再让 Codex 执行：
 # 最终目标架构
 
 ```text
-                         MyProxy
+                         routekey
                            │
             ┌──────────────┴──────────────┐
             │                             │

@@ -4,10 +4,16 @@ import { defaultSettings, migrateStorage, STORAGE_VERSION } from './migration';
 import { appSettingsSchema, exportConfigSchema, proxyNodeSchema } from './schema';
 
 const KEYS = {
+  nodes: 'routekey.nodes',
+  settings: 'routekey.settings',
+  version: 'routekey.version',
+  runtime: 'routekey.runtime',
+} as const;
+
+const LEGACY_KEYS = {
   nodes: 'myproxy.nodes',
   settings: 'myproxy.settings',
   version: 'myproxy.version',
-  runtime: 'myproxy.runtime',
 } as const;
 
 export interface StorageArea {
@@ -20,7 +26,7 @@ export class AppStorage {
 
   async initialize(): Promise<void> {
     try {
-      const raw = await this.area.get(Object.values(KEYS));
+      const raw = await this.area.get([...Object.values(KEYS), ...Object.values(LEGACY_KEYS)]);
       const migrated = migrateStorage(raw);
       await this.area.set({
         [KEYS.nodes]: migrated.nodes,
@@ -79,7 +85,7 @@ export class AppStorage {
   async exportConfig(includeSecrets = false): Promise<ExportConfig> {
     const [nodes, settings] = await Promise.all([this.getNodes(), this.getSettings()]);
     return {
-      format: 'myproxy',
+      format: 'routekey',
       version: 1,
       nodes: nodes.map((node) => ({
         ...node,

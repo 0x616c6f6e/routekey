@@ -1,6 +1,6 @@
-# MyProxy
+# routekey
 
-MyProxy 是一个本地优先的 Chrome / Edge Manifest V3 代理扩展。代理节点全部由用户管理；扩展不提供公共节点、不依赖云端账号，也不会上传节点配置。
+routekey 是一个本地优先的 Chrome / Edge Manifest V3 代理扩展。代理节点全部由用户管理；扩展不提供公共节点、不依赖云端账号，也不会上传节点配置。
 
 ## 功能
 
