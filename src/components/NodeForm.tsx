@@ -11,7 +11,7 @@ const formSchema = z.object({
   name: z.string().trim().min(1, '请输入节点名称').max(100),
   protocol: z.enum(['http', 'https', 'socks4', 'socks5']),
   host: z.string().trim().min(1, '请输入主机地址').max(253),
-  port: z.coerce.number().int('端口必须为整数').min(1).max(65535),
+  port: z.number().int('端口必须为整数').min(1).max(65535),
   username: z.string().max(256),
   password: z.string().max(1024),
   tags: z.string().max(500),
@@ -89,7 +89,7 @@ export function NodeForm({
           <Input placeholder="127.0.0.1" spellCheck={false} {...register('host')} />
         </Field>
         <Field label="端口" error={errors.port?.message}>
-          <Input type="number" min={1} max={65535} {...register('port')} />
+          <Input type="number" min={1} max={65535} {...register('port', { valueAsNumber: true })} />
         </Field>
         <Field label="用户名" error={errors.username?.message}>
           <Input autoComplete="off" {...register('username')} />

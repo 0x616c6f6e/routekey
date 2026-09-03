@@ -1,4 +1,4 @@
-import { Github, ShieldCheck } from 'lucide-react';
+import { Code2, ShieldCheck } from 'lucide-react';
 
 export function AboutPage() {
   return (
@@ -29,7 +29,7 @@ export function AboutPage() {
       </section>
       <section className="settings-section">
         <h2>
-          <Github size={19} /> 开源许可
+          <Code2 size={19} /> 开源许可
         </h2>
         <p>本项目使用 MIT License。构建和浏览器加载说明请参阅仓库 README。</p>
       </section>

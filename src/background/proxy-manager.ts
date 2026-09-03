@@ -29,8 +29,16 @@ function clearProxy(): Promise<void> {
   });
 }
 
-function getProxy(): Promise<chrome.types.ChromeSettingGetResultDetails> {
-  return new Promise((resolve) => chrome.proxy.settings.get({ incognito: false }, resolve));
+interface ProxySettingState {
+  levelOfControl: string;
+  value: unknown;
+  incognitoSpecific?: boolean;
+}
+
+function getProxy(): Promise<ProxySettingState> {
+  return new Promise((resolve) => {
+    chrome.proxy.settings.get({ incognito: false }, (details) => resolve(details));
+  });
 }
 
 function nativeProxyServer(node: ProxyNode): chrome.proxy.ProxyServer {
@@ -131,7 +139,7 @@ export class BrowserProxyManager {
       this.storage.getNodes(),
       getProxy(),
     ]);
-    const activeNode = nodes.find((node) => node.id === settings.selectedNodeId);
+    const activeNode = nodes.find((node: ProxyNode) => node.id === settings.selectedNodeId);
     const conflict = ['controlled_by_other_extensions', 'not_controllable'].includes(
       control.levelOfControl,
     );

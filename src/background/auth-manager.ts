@@ -12,7 +12,7 @@ export function setTemporaryAuthNode(node?: ProxyNode): void {
 }
 
 async function credentialsFor(
-  details: chrome.webRequest.WebAuthenticationChallengeDetails,
+  details: chrome.webRequest.OnAuthRequiredDetails,
 ): Promise<chrome.webRequest.BlockingResponse> {
   if (!details.isProxy) return {};
   const count = attempts.get(details.requestId) ?? 0;
@@ -36,10 +36,11 @@ async function credentialsFor(
 export function registerProxyAuth(): void {
   chrome.webRequest.onAuthRequired.addListener(
     (details, callback) => {
-      if (!callback) return;
+      if (!callback) return undefined;
       void credentialsFor(details)
         .then(callback)
         .catch(() => callback({ cancel: true }));
+      return undefined;
     },
     { urls: ['<all_urls>'] },
     ['asyncBlocking'],
