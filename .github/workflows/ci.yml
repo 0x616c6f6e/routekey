@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    name: Validate and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 20.19.5
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Audit dependencies
+        run: npm audit --registry=https://registry.npmjs.org --audit-level=high
+
+      - name: Build extension
+        run: npm run build
+
+      - name: Verify production build
+        run: npm run verify:build
+
+      - name: Package extension
+        env:
+          ARCHIVE_NAME: myproxy-extension-${{ github.sha }}.zip
+        run: |
+          cd dist
+          zip -q -r -9 "../${ARCHIVE_NAME}" .
+
+      - name: Upload extension artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: myproxy-extension-${{ github.sha }}
+          path: myproxy-extension-${{ github.sha }}.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
