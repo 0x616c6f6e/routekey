@@ -107,7 +107,7 @@ export function EmptyState({
 }: PropsWithChildren<{ title: string; description: string }>) {
   return (
     <div className="empty-state">
-      <div className="empty-mark">M</div>
+      <div className="empty-mark">R</div>
       <h3>{title}</h3>
       <p>{description}</p>
       {children}

@@ -19,8 +19,12 @@ export interface MigratedStorage {
 }
 
 export function migrateStorage(raw: Record<string, unknown>): MigratedStorage {
-  const nodesResult = proxyNodeSchema.array().safeParse(raw['myproxy.nodes']);
-  const settingsResult = appSettingsSchema.safeParse(raw['myproxy.settings']);
+  const nodesResult = proxyNodeSchema
+    .array()
+    .safeParse(raw['routekey.nodes'] ?? raw['myproxy.nodes']);
+  const settingsResult = appSettingsSchema.safeParse(
+    raw['routekey.settings'] ?? raw['myproxy.settings'],
+  );
 
   return {
     version: STORAGE_VERSION,

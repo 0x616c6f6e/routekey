@@ -56,7 +56,7 @@ jobs:
         env:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
-          archive="myproxy-extension-${RELEASE_TAG}.zip"
+          archive="routekey-extension-${RELEASE_TAG}.zip"
           cd dist
           zip -q -r -9 "../${archive}" .
           cd ..
@@ -68,8 +68,8 @@ jobs:
           RELEASE_TAG: ${{ github.ref_name }}
         run: |
           gh release create "${RELEASE_TAG}" \
-            "myproxy-extension-${RELEASE_TAG}.zip" \
-            "myproxy-extension-${RELEASE_TAG}.zip.sha256" \
+            "routekey-extension-${RELEASE_TAG}.zip" \
+            "routekey-extension-${RELEASE_TAG}.zip.sha256" \
             --verify-tag \
             --generate-notes \
-            --title "MyProxy ${RELEASE_TAG}"
+            --title "routekey ${RELEASE_TAG}"

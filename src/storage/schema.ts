@@ -68,7 +68,9 @@ export const appSettingsSchema: z.ZodType<AppSettings> = z.object({
 });
 
 export const exportConfigSchema: z.ZodType<ExportConfig> = z.object({
-  format: z.literal('myproxy'),
+  format: z
+    .union([z.literal('routekey'), z.literal('myproxy')])
+    .transform(() => 'routekey' as const),
   version: z.literal(1),
   nodes: z.array(proxyNodeSchema).max(5000),
   settings: appSettingsSchema,

@@ -10,15 +10,15 @@ function safeContext(context?: LogContext): LogContext | undefined {
 
 export const logger = {
   debug(message: string, context?: LogContext): void {
-    if (import.meta.env.DEV) console.debug(`[MyProxy] ${message}`, safeContext(context));
+    if (import.meta.env.DEV) console.debug(`[routekey] ${message}`, safeContext(context));
   },
   info(message: string, context?: LogContext): void {
-    console.info(`[MyProxy] ${message}`, safeContext(context));
+    console.info(`[routekey] ${message}`, safeContext(context));
   },
   warn(message: string, context?: LogContext): void {
-    console.warn(`[MyProxy] ${message}`, safeContext(context));
+    console.warn(`[routekey] ${message}`, safeContext(context));
   },
   error(message: string, context?: LogContext): void {
-    console.error(`[MyProxy] ${message}`, safeContext(context));
+    console.error(`[routekey] ${message}`, safeContext(context));
   },
 };

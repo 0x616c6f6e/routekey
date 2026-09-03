@@ -101,5 +101,5 @@ if (failures.length > 0) {
   for (const failure of failures) console.error(`- ${failure}`);
   process.exitCode = 1;
 } else {
-  console.log(`Verified MyProxy ${packageJson.version} production build.`);
+  console.log(`Verified routekey ${packageJson.version} production build.`);
 }

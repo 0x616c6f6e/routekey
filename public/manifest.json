@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "MyProxy",
+  "name": "routekey",
   "version": "0.1.0",
   "description": "Local-first, user-managed browser proxy extension",
   "minimum_chrome_version": "88",
@@ -19,7 +19,7 @@
   },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "MyProxy",
+    "default_title": "routekey",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",

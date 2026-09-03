@@ -5,16 +5,16 @@ export function AboutPage() {
     <div className="page-content narrow-page">
       <div className="page-title-row">
         <div>
-          <h1>关于 MyProxy</h1>
+          <h1>关于 routekey</h1>
           <p>本地优先的浏览器代理管理工具。</p>
         </div>
         <span className="version">v0.1.0</span>
       </div>
       <section className="about-hero">
-        <div className="brand-mark large">M</div>
+        <div className="brand-mark large">R</div>
         <div>
           <h2>代理由你掌控</h2>
-          <p>MyProxy 不提供公共节点、不依赖云端账号，也不会上传你的代理配置。</p>
+          <p>routekey 不提供公共节点、不依赖云端账号，也不会上传你的代理配置。</p>
         </div>
       </section>
       <section className="settings-section">

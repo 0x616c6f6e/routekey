@@ -16,7 +16,7 @@ export function ImportExportPage() {
     );
     const link = document.createElement('a');
     link.href = url;
-    link.download = `myproxy-backup-${new Date().toISOString().slice(0, 10)}.json`;
+    link.download = `routekey-backup-${new Date().toISOString().slice(0, 10)}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -41,7 +41,7 @@ export function ImportExportPage() {
       <div className="page-title-row">
         <div>
           <h1>导入与导出</h1>
-          <p>以经过校验的 MyProxy JSON 格式备份配置。</p>
+          <p>以经过校验的 routekey JSON 格式备份配置。</p>
         </div>
       </div>
       {error ? <ErrorBanner message={error} onClose={clearError} /> : null}
@@ -61,7 +61,7 @@ export function ImportExportPage() {
       <section className="transfer-section">
         <div>
           <h2>导入配置</h2>
-          <p>仅接受 format 为 myproxy、version 为 1 且通过完整 schema 校验的文件。</p>
+          <p>仅接受 format 为 routekey、version 为 1 且通过完整 schema 校验的文件。</p>
         </div>
         <input
           ref={inputRef}
