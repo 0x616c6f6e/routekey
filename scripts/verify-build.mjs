@@ -93,6 +93,10 @@ for (const path of await collectFiles(fileURLToPath(new URL('dist/', root)))) {
   check(!/\bnew\s+Function\s*\(/.test(content), `${path} contains new Function()`);
   if (path.endsWith('.html')) {
     check(!/<script[^>]+src=["']https?:\/\//i.test(content), `${path} loads a remote script`);
+    check(
+      !/<link\b[^>]*\brel\s*=\s*["']modulepreload["']/i.test(content),
+      `${path} contains modulepreload links that can cause cross-world extension resource mismatches`,
+    );
   }
 }
 

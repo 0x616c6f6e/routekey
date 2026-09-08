@@ -46,6 +46,8 @@ Edge：
 
 修改后台或 Manifest 后，需要在扩展管理页重新加载扩展。
 
+构建配置禁用了模块预加载（`build.modulePreload: false`），以避免扩展页面出现 `cross-world extension resource mismatch` 预加载警告；共享模块仍通过正常的 ES module 导入加载。`npm run verify:build` 会检查构建页面不包含 `modulepreload` 标签。更新此配置后，请重新构建并重新加载扩展。
+
 ## CI/CD 与发布
 
 GitHub Actions 包含两条流水线：
